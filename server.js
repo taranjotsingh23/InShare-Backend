@@ -4,13 +4,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const path = require('path');
 const cors = require('cors');
-const http = require('http');
 
 // Cors 
-const corsOptions = {
-  origin: "http://localhost:3000"
+// const corsOptions = {
+//   origin: ['http://localhost:3000','http://localhost:5500','http://localhost:3001','http://127.0.0.1:3001/']
   // ['http://localhost:3000', 'http://localhost:5000', 'http://localhost:3300']
-}
+// }
 
 // Default configuration looks like
 // {
@@ -20,7 +19,15 @@ const corsOptions = {
 //     "optionsSuccessStatus": 204
 //   }
 
-app.use(cors(corsOptions))
+// app.use(cors(corsOptions));
+
+var corsOptions = {
+  origin: ['http://localhost:3000','http://localhost:5500','http://localhost:3001']
+};
+
+app.use(cors(corsOptions));
+
+
 app.use(express.static('public'));
 
 const connectDB = require('./config/db');
